@@ -1,0 +1,35 @@
+{
+  "name": "esti-mate",
+  "private": true,
+  "author": "Tom Calvin Haak",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.4.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "pnpm eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "pnpm lint"
+    ],
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "3.5.3",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}
