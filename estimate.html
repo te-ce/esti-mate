@@ -10,12 +10,14 @@
   </head>
   <script type="module" src="/src/components/header.ts"></script>
   <script type="module" src="/src/components/estimation-form.ts"></script>
+  <script type="module" src="/src/components/invite-link.ts"></script>
   <script type="module" src="/src/client.ts"></script>
 
   <body class="flex h-screen flex-col items-center bg-slate-300">
     <app-header></app-header>
-    <main class="flex h-full flex-col items-center justify-center">
+    <main class="flex h-full flex-col items-center justify-center gap-4">
       <estimation-form></estimation-form>
+      <invite-link></invite-link>
     </main>
   </body>
 </html>

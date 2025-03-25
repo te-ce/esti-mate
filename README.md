@@ -6,11 +6,13 @@ Esti-mate - Your last mate to estimate your tickets (or something like that)
 
 ## Motivation
 
-Goal of this project is to build a tool that can help to estimate the tickets. At best this is implemented without the need of an actual Server (WebRTC?). Motivation is to learn and understand the basics of web (html semantics, forms, 'real time' connections, ...).
+Goal of this project is to build a tool that can help to estimate the tickets. At best this is implemented without the need of an actual Server (WebRTC?). Motivation is to learn and understand the basics of web (html semantics, forms, 'real time' connections, templates, web components, ...).
+Yes, this would have been much easier and faster with something like [React](https://react.dev/) or even [Next](https://nextjs.org/), but that is not the goal here.
 
 ## Roadmap
 
 First implementation will be with a server (and [socket.io](https://socket.io/) for communication with the [vite plugin](https://github.com/vite-plugin-socket-io/vite-plugin-socket-io)), understand how HTML and forms work. Then try to implement to strip away the server.
+If I feel lucky, I might add random avatar generation with [dicebear](https://www.dicebear.com/).
 
 This was scaffolded with the [vite](https://vite.dev/) cli command `pnpm create vite`. We also use [tailwind CSS](https://tailwindcss.com/) for styling. Besides that, we use the usual tools for elevating the developer experience: [prettier](https://prettier.io/) for formatting (don't forget the [tailwind plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)), [eslint](https://eslint.org/) for linting, [husky](https://typicode.github.io/husky/) for running commands before every commit. Not to forget [pnpm](https://pnpm.io/) as package manager.
 

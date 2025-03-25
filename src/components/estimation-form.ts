@@ -2,20 +2,7 @@ import { emitEstimation } from "../client";
 import { html } from "../utils/misc";
 
 class EstimationForm extends HTMLElement {
-  constructor() {
-    super();
-    this.innerHTML = html`
-      <form class="flex gap-4" id="estimation-form"></form>
-
-      <template id="estimate-button-template">
-        <button
-          type="button"
-          id="estimate-button"
-          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
-        ></button>
-      </template>
-    `;
-
+  generateEstimationButton = (count: number) => {
     const form = this.querySelector("#estimation-form");
     const template = this.querySelector(
       "#estimate-button-template",
@@ -23,7 +10,7 @@ class EstimationForm extends HTMLElement {
 
     if (!form || !template) return;
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= count; i++) {
       const clone = template.content.cloneNode(true);
       const button = (clone as DocumentFragment).querySelector(
         "#estimate-button",
@@ -38,6 +25,22 @@ class EstimationForm extends HTMLElement {
 
       form.appendChild(clone);
     }
+  };
+
+  constructor() {
+    super();
+    this.innerHTML = html`
+      <form class="flex gap-4" id="estimation-form"></form>
+
+      <template id="estimate-button-template">
+        <button
+          type="button"
+          id="estimate-button"
+          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
+        ></button>
+      </template>
+    `;
+    this.generateEstimationButton(5);
   }
 }
 

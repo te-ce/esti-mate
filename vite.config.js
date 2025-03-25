@@ -11,10 +11,10 @@ const rooms = {};
 
 const socketEvents = (io, socket) => {
   const id = socket.id;
-  console.log(`${id} connected`);
+  console.log(`[${id}] connected`);
 
   socket.on("connected", ({ roomId, name }) => {
-    console.log(`${name} ${id} connected to ${roomId}`);
+    console.log(`${name} [${id}] connected to ${roomId}`);
     socket.join(roomId);
     addUserToRooms(rooms, roomId, { id: id, name: name });
     io.to(roomId).emit("user:connected", { id, name });
@@ -22,7 +22,7 @@ const socketEvents = (io, socket) => {
 
   socket.on("disconnect", () => {
     const { user, roomId } = getUserInfo(rooms, id);
-    console.log(`${user.name} ${id} disconnected from ${roomId}`);
+    console.log(`${user.name} [${id}] disconnected from ${roomId}`);
     removeUserFromRooms(rooms, id, socket);
     io.to(roomId).emit("user:disconnected", id);
   });
