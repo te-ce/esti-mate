@@ -1,5 +1,4 @@
 import { io } from "socket.io-client";
-import { generateButton } from "./generateButtons";
 import { addUser, removeUser, Room } from "./utils/room";
 
 const socket = io();
@@ -32,4 +31,3 @@ export const emitEstimation = (estimation: number) => {
 socket.on("submit:estimation", () => {
   console.log("Estimation submitted");
 });
-generateButton();

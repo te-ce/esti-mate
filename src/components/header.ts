@@ -5,8 +5,10 @@ class AppHeader extends HTMLElement {
     super();
     this.innerHTML = html`
       <header class="flex items-center justify-center gap-4">
-        <img src="/svg.svg" class="h-12 w-12" />
-        <h1 class="text-2xl font-bold">Esti-Mate</h1>
+        <a href="/" class="flex items-center gap-2">
+          <img src="/svg.svg" class="h-12 w-12" />
+          <h1 class="text-2xl font-bold">Esti-Mate</h1>
+        </a>
       </header>
     `;
   }
