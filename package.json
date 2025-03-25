@@ -10,6 +10,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "pnpm eslint . --ext .ts,.tsx",
+    "fix": "pnpm eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "prepare": "husky"
   },
