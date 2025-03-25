@@ -3,27 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/svg.svg" />
-    <link href="/src/style.css" rel="stylesheet" />
+    <link href="/src/styles/style.css" rel="stylesheet" />
     <link rel="manifest" href="/app.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Esti-Mate</title>
   </head>
+  <script type="module" src="/src/components/header.ts"></script>
 
   <body class="flex h-screen flex-col items-center bg-slate-300">
-    <header class="flex items-center justify-center gap-4">
-      <img src="/svg.svg" class="h-12 w-12" />
-      <h1 class="text-2xl font-bold">Esti-Mate</h1>
-    </header>
+    <app-header></app-header>
     <main class="flex h-full flex-col items-center justify-center">
-      <form class="flex gap-4">
-        <button type="button" class="rounded-lg bg-white px-4 py-2 shadow-lg">
-          1
-        </button>
-        <button type="button" class="rounded-lg bg-white px-4 py-2 shadow-lg">
-          2
-        </button>
-        <button type="button" class="rounded-lg bg-white px-4 py-2 shadow-lg">
-          3
+      <form
+        action="/estimate.html"
+        class="flex flex-col gap-4"
+        id="estimation-form"
+      >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="rounded-lg bg-slate-200 px-4 py-2 shadow-lg"
+          placeholder="Name"
+          required
+        />
+        <input
+          type="text"
+          id="room"
+          name="room"
+          class="rounded-lg bg-slate-200 px-4 py-2 shadow-lg"
+          placeholder="Room"
+        />
+        <button
+          type="submit"
+          id="estimate-button"
+          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
+        >
+          Enter
         </button>
       </form>
     </main>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/svg.svg" />
+    <link href="/src/styles/style.css" rel="stylesheet" />
+    <link rel="manifest" href="/app.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esti-Mate</title>
+  </head>
+  <script type="module" src="/src/components/header.ts"></script>
+  <script type="module" src="/src/client.ts"></script>
+
+  <body class="flex h-screen flex-col items-center bg-slate-300">
+    <app-header></app-header>
+    <main class="flex h-full flex-col items-center justify-center">
+      <form class="flex gap-4" id="estimation-form"></form>
+    </main>
+
+    <template id="estimate-button-template">
+      <button
+        type="button"
+        id="estimate-button"
+        class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
+      ></button>
+    </template>
+  </body>
+</html>

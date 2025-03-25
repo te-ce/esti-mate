@@ -10,6 +10,13 @@ Goal of this project is to build a tool that can help to estimate the tickets. A
 
 ## Roadmap
 
-First implementation will be with a server, understand how HTML and forms work. Then try to implement to strip away the server.
+First implementation will be with a server (and [socket.io](https://socket.io/) for communication with the [vite plugin](https://github.com/vite-plugin-socket-io/vite-plugin-socket-io)), understand how HTML and forms work. Then try to implement to strip away the server.
 
-This was scaffolded with the [vite](https://vite.dev/) cli command `pnpm create vite`. We also use [tailwind CSS](https://tailwindcss.com/), since this solves many problems of writing pure CSS ([see Theo's video "is tailwind the right default" on this](https://www.youtube.com/watch?v=oL0_PITvFto)). Besides that, we use the usual tools for elevating the developer experience: [prettier](https://prettier.io/) for formatting (don't forget the [tailwind plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)), [eslint](https://eslint.org/) for linting, [husky](https://typicode.github.io/husky/) for running commands before every commit. Not to forget [pnpm](https://pnpm.io/) as package manager.
+This was scaffolded with the [vite](https://vite.dev/) cli command `pnpm create vite`. We also use [tailwind CSS](https://tailwindcss.com/) for styling. Besides that, we use the usual tools for elevating the developer experience: [prettier](https://prettier.io/) for formatting (don't forget the [tailwind plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)), [eslint](https://eslint.org/) for linting, [husky](https://typicode.github.io/husky/) for running commands before every commit. Not to forget [pnpm](https://pnpm.io/) as package manager.
+
+## FAQ
+
+- Why use tailwind and not pure CSS?
+  - Tailwind has many benefits to me and does not abstract CSS that much, that I could'nt write vanilla CSS anymore. Also it solves many problems that vanilla CSS would have, like naming things, gotchas (declaration order), etc. [See Theo's video "is tailwind the right default" on this](https://www.youtube.com/watch?v=oL0_PITvFto)
+- Why use a vite plugin to get socket.io running on the vite server instead of building an extra express server with socket.io running?
+  - I don't see a real learning benefit there, since setting up an express server wouldn't be that much more, but would need a second server running.
