@@ -1,4 +1,4 @@
-import { emitNext } from "../client";
+import { emitAddTicket, emitNext } from "../client";
 import { html } from "../utils/misc";
 
 class AdminForm extends HTMLElement {
@@ -8,10 +8,17 @@ class AdminForm extends HTMLElement {
       <form class="flex items-center justify-center gap-4">
         <input
           type="text"
-          id="admin-form"
+          id="tickets-input"
           class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
-          placeholder="Link"
+          placeholder="Tickets"
         />
+        <button
+          type="button"
+          id="add-tickets-button"
+          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
+        >
+          Add Tickets
+        </button>
         <button
           type="button"
           id="next-button"
@@ -21,6 +28,16 @@ class AdminForm extends HTMLElement {
         </button>
       </form>
     `;
+
+    this.querySelector("#add-tickets-button")?.addEventListener("click", () => {
+      const input = document.getElementById(
+        "tickets-input",
+      ) as HTMLInputElement;
+      if (!input) return;
+
+      emitAddTicket(input.value);
+      input.value = "";
+    });
 
     this.querySelector("#next-button")?.addEventListener("click", () => {
       emitNext();

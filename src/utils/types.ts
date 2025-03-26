@@ -10,4 +10,5 @@ export enum Room {
 export enum Submit {
   ESTIMATION = "submit:estimation",
   NEXT = "submit:next",
+  ADD_TICKET = "submit:add-ticket",
 }

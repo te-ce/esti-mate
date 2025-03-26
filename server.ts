@@ -7,6 +7,7 @@ import {
   Rooms,
 } from "./src/utils/room";
 import { Room, Submit, User } from "./src/utils/types";
+import { parseTicketString } from "./src/utils/tickets";
 
 const rooms: Rooms = {};
 
@@ -39,6 +40,15 @@ export const socketEvents = (io: any, socket: Socket) => {
         room.activeTicketNo++;
         io.to(roomId).emit(Room.UPDATE, rooms);
       }
+    }
+  });
+
+  socket.on(Submit.ADD_TICKET, ({ tickets, roomId }) => {
+    const room = rooms[roomId];
+    const parsedTickets = parseTicketString(tickets);
+    if (room) {
+      room.tickets = [...room.tickets, ...parsedTickets];
+      io.to(roomId).emit(Room.UPDATE, rooms);
     }
   });
 };

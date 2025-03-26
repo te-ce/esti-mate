@@ -16,7 +16,6 @@ class EstimationForm extends HTMLElement {
       const button = (clone as DocumentFragment).getElementById(
         "estimate-button",
       );
-
       if (!button) return;
 
       button.textContent = `${this.estimations[i]}`;

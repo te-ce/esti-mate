@@ -1,3 +1,5 @@
+import { Ticket } from "./tickets";
+
 export type Room = {
   id: string;
   users: User[];
@@ -11,10 +13,6 @@ export type User = {
   id: string;
   name: string;
   estimation?: string;
-};
-
-export type Ticket = {
-  url: string;
 };
 
 const createRoom = (rooms: Rooms, id: string) => {

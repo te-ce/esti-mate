@@ -41,3 +41,7 @@ socket.on(Submit.ESTIMATION, ({ estimation, id, name }) => {
 export const emitNext = () => {
   socket.emit(Submit.NEXT, baseArgs);
 };
+
+export const emitAddTicket = (tickets: string) => {
+  socket.emit(Submit.ADD_TICKET, { tickets: tickets, ...baseArgs });
+};

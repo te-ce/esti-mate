@@ -1,4 +1,7 @@
-import { addTicketCard, focusTicketCard } from "../components/tickets";
+import {
+  addTicketCard,
+  focusTicketCard,
+} from "../components/tickets-container";
 import { addUserCard } from "../components/user-container";
 import { Room } from "./room";
 

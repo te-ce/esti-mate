@@ -22,16 +22,17 @@ export const addUserCard = (id: string, name: string, estimation?: string) => {
     createUserCard(id, name, estimation);
   } else {
     const estimationSpan = card.querySelectorAll("span")[1];
-    if (estimationSpan) {
-      estimationSpan.textContent = estimation ?? "";
-    }
+    if (!estimationSpan) return;
+
+    estimationSpan.textContent = estimation ?? "";
   }
 };
 
 const createUserCard = (id: string, name: string, estimation?: string) => {
   const container = document.getElementById("user-container");
-
   const section = document.createElement("section") as HTMLTemplateElement;
+  if (!container || !section) return;
+
   section.id = id;
   section.innerHTML = html`
     <data
@@ -43,8 +44,6 @@ const createUserCard = (id: string, name: string, estimation?: string) => {
       <span>${estimation ?? ""}</span>
     </data>
   `;
-
-  if (!container) return;
 
   container.appendChild(section);
 };

@@ -16,30 +16,31 @@ customElements.define("tickets-container", Tickets);
 
 export const addTicketCard = (id: string, url: string) => {
   const container = document.getElementById("tickets-container");
-  if (container) {
-    const card = container.querySelector(`[id="${id}"]`) as HTMLElement;
-    if (!card) {
-      createTicketCard(id, url);
-    } else {
-      updateTicketCard(card, id, url);
-    }
+  if (!container) return;
+
+  const card = container.querySelector(`[id="${id}"]`) as HTMLElement;
+  if (!card) {
+    createTicketCard(id, url);
+  } else {
+    updateTicketCard(card, id, url);
   }
 };
 
 const updateTicketCard = (card: HTMLElement, id: string, url: string) => {
   const link = card.querySelectorAll("a")[0];
   const title = card.querySelectorAll("h2")[0];
-  if (link && title) {
-    link.href = url;
-    link.textContent = url;
-    title.textContent = `🎟️ ${id}`;
-  }
+  if (!link || !title) return;
+
+  link.href = url;
+  link.textContent = url;
+  title.textContent = `🎟️ ${id}`;
 };
 
 export const createTicketCard = (id: string, url: string) => {
   const container = document.getElementById("tickets-container");
-
   const section = document.createElement("section") as HTMLTemplateElement;
+  if (!container || !section) return;
+
   section.id = id;
   section.innerHTML = html`
     <data
@@ -53,8 +54,6 @@ export const createTicketCard = (id: string, url: string) => {
       <a target="_blank" href="${url}" link>${url}</a>
     </data>
   `;
-
-  if (!container) return;
 
   container.appendChild(section);
 };
@@ -76,14 +75,14 @@ export const focusTicketCard = (id: string) => {
   const focussedCard = document
     .getElementById(id)
     ?.getElementsByClassName("ticket-card")[0];
-  if (focussedCard) {
-    focussedCard.classList.add(...focusClasses);
-    focussedCard.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-      inline: "center",
-    });
-  }
+  if (!focussedCard) return;
+
+  focussedCard.classList.add(...focusClasses);
+  focussedCard.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+    inline: "center",
+  });
 };
 
 export const removeTicketCard = (id: string) => {
