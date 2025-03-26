@@ -10,6 +10,9 @@ class AppHeader extends HTMLElement {
           <h1 class="text-2xl font-bold">Esti-Mate</h1>
         </a>
       </header>
+      <hr
+        class="h-px w-[66vw] border-t-0 bg-transparent bg-gradient-to-r from-transparent via-slate-600 to-transparent opacity-25"
+      />
     `;
   }
 }

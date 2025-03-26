@@ -1,6 +1,8 @@
 export type Room = {
   id: string;
   users: User[];
+  tickets: Ticket[];
+  activeTicketNo: number;
 };
 
 export type Rooms = Record<string, Room>;
@@ -11,8 +13,12 @@ export type User = {
   estimation?: string;
 };
 
+export type Ticket = {
+  url: string;
+};
+
 const createRoom = (rooms: Rooms, id: string) => {
-  rooms[id] = { id: id, users: [] };
+  rooms[id] = { id: id, users: [], tickets: [], activeTicketNo: 0 };
 };
 
 export const addUser = (rooms: Rooms, roomId: string, user: User) => {

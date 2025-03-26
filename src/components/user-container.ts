@@ -17,27 +17,29 @@ class UserContainer extends HTMLElement {
 customElements.define("user-container", UserContainer);
 
 export const addUserCard = (id: string, name: string, estimation?: string) => {
-  const card = document.querySelector(`#${id}`);
-  if (card) {
+  const card = document.getElementById(id);
+  if (!card) {
+    createUserCard(id, name, estimation);
+  } else {
     const estimationSpan = card.querySelectorAll("span")[1];
     if (estimationSpan) {
       estimationSpan.textContent = estimation ?? "";
     }
-  } else {
-    createUserCard(id, name, estimation);
   }
 };
 
 const createUserCard = (id: string, name: string, estimation?: string) => {
-  const container = document.querySelector("#user-container");
+  const container = document.getElementById("user-container");
 
   const section = document.createElement("section") as HTMLTemplateElement;
   section.id = id;
   section.innerHTML = html`
     <data
-      class="flex flex-col items-center justify-center rounded-lg bg-white p-6 shadow-lg"
+      class="flex min-w-24 flex-col items-center rounded-lg bg-white p-3 pt-0 shadow-lg"
     >
-      <span>${name}</span>
+      <span class="-translate-y-2 rounded-full bg-slate-50 px-2 italic"
+        >${name}</span
+      >
       <span>${estimation ?? ""}</span>
     </data>
   `;
@@ -47,7 +49,7 @@ const createUserCard = (id: string, name: string, estimation?: string) => {
   container.appendChild(section);
 };
 
-export const removeUserCard = (name: string) => {
-  const card = document.querySelector(`#${name}`);
+export const removeUserCard = (id: string) => {
+  const card = document.getElementById(id);
   if (card) card.remove();
 };

@@ -10,7 +10,10 @@
   </head>
   <script type="module" src="/src/components/header.ts"></script>
   <script type="module" src="/src/components/estimation-form.ts"></script>
+  <script type="module" src="/src/components/admin-form.ts"></script>
   <script type="module" src="/src/components/invite-link.ts"></script>
+  <script type="module" src="/src/components/divider-horizontal.ts"></script>
+  <script type="module" src="/src/components/tickets.ts"></script>
   <script type="module" src="/src/components/user-container.ts"></script>
   <script type="module" src="/src/client.ts"></script>
 
@@ -18,7 +21,10 @@
     <app-header></app-header>
     <main class="flex h-full flex-col items-center justify-center gap-30">
       <user-container></user-container>
+      <tickets-container></tickets-container>
       <section class="flex flex-col items-center gap-4">
+        <admin-form></admin-form>
+        <divider-horizontal></divider-horizontal>
         <estimation-form></estimation-form>
         <invite-link></invite-link>
       </section>

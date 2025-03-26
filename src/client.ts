@@ -1,6 +1,8 @@
 import { io } from "socket.io-client";
 import { Rooms } from "./utils/room";
 import { addUserCard, removeUserCard } from "./components/user-container";
+import { generateRoom } from "./utils/general";
+import { Room, Submit, User } from "./utils/types";
 
 const socket = io();
 
@@ -10,28 +12,32 @@ const roomId = urlParams.get("room") ?? "";
 const baseArgs = { roomId: roomId, name: name };
 
 socket.on("connect", () => {
-  socket.emit("connected", { ...baseArgs });
+  socket.emit(User.CONNECTED, { ...baseArgs });
 });
 
-socket.on("user:connected", ({ id, name }) => {
+socket.on(User.CONNECTED, ({ id, name }) => {
   addUserCard(id, name, "???");
 });
 
-socket.on("rooms:update", (rooms: Rooms) => {
-  const curRoom = rooms[roomId];
-  for (const user of curRoom.users) {
-    addUserCard(user.id, user.name, user.estimation ?? "???");
+socket.on(Room.UPDATE, (rooms: Rooms) => {
+  const room = rooms[roomId];
+  if (room) {
+    generateRoom(room);
   }
 });
 
-socket.on("user:disconnected", (id) => {
+socket.on(User.DISCONNECTED, (id) => {
   removeUserCard(id);
 });
 
-export const emitEstimation = (estimation: number) => {
-  socket.emit("submit:estimation", { estimation: estimation, ...baseArgs });
+export const emitEstimation = (estimation: string) => {
+  socket.emit(Submit.ESTIMATION, { estimation: estimation, ...baseArgs });
 };
 
-socket.on("submit:estimation", ({ estimation, id, name }) => {
+socket.on(Submit.ESTIMATION, ({ estimation, id, name }) => {
   addUserCard(id, name, estimation.toString());
 });
+
+export const emitNext = () => {
+  socket.emit(Submit.NEXT, baseArgs);
+};

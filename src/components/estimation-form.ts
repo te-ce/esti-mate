@@ -2,6 +2,7 @@ import { emitEstimation } from "../client";
 import { html } from "../utils/misc";
 
 class EstimationForm extends HTMLElement {
+  estimations = ["XS", "S", "M", "L", "XL", "?"];
   generateEstimationButton = (count: number) => {
     const form = this.querySelector("#estimation-form");
     const template = this.querySelector(
@@ -10,17 +11,17 @@ class EstimationForm extends HTMLElement {
 
     if (!form || !template) return;
 
-    for (let i = 1; i <= count; i++) {
+    for (let i = 0; i < count; i++) {
       const clone = template.content.cloneNode(true);
-      const button = (clone as DocumentFragment).querySelector(
-        "#estimate-button",
+      const button = (clone as DocumentFragment).getElementById(
+        "estimate-button",
       );
 
       if (!button) return;
 
-      button.textContent = `${i.toString()} days`;
+      button.textContent = `${this.estimations[i]}`;
       button.addEventListener("click", () => {
-        emitEstimation(i);
+        emitEstimation(this.estimations[i]);
       });
 
       form.appendChild(clone);
@@ -36,11 +37,11 @@ class EstimationForm extends HTMLElement {
         <button
           type="button"
           id="estimate-button"
-          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
+          class="min-w-12 rounded-lg bg-white px-4 py-2 uppercase shadow-lg transition hover:bg-slate-200"
         ></button>
       </template>
     `;
-    this.generateEstimationButton(5);
+    this.generateEstimationButton(this.estimations.length);
   }
 }
 
