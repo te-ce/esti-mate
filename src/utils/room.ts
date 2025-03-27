@@ -16,7 +16,12 @@ export type User = {
 };
 
 const createRoom = (rooms: Rooms, id: string) => {
-  rooms[id] = { id: id, users: [], tickets: [], activeTicketNo: 0 };
+  rooms[id] = {
+    id: id,
+    users: [],
+    tickets: [],
+    activeTicketNo: 0,
+  };
 };
 
 export const addUser = (rooms: Rooms, roomId: string, user: User) => {

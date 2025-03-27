@@ -1,4 +1,5 @@
 import { html } from "../utils/misc";
+import { parseUrl, wrapString } from "../utils/tickets";
 
 class Tickets extends HTMLElement {
   constructor() {
@@ -6,7 +7,7 @@ class Tickets extends HTMLElement {
     this.innerHTML = html`
       <section
         id="tickets-container"
-        class="flex max-w-[100vw] gap-4 overflow-x-hidden pt-5"
+        class="flex max-w-[100vw] items-center gap-4 overflow-x-hidden pt-5"
       ></section>
     `;
   }
@@ -44,14 +45,16 @@ export const createTicketCard = (id: string, url: string) => {
   section.id = id;
   section.innerHTML = html`
     <data
-      class="ticket-card flex flex-col items-center rounded-lg bg-white p-2 pt-0 shadow-lg"
+      class="ticket-card flex max-w-[20vw] flex-col items-center rounded-lg bg-white p-2 pt-0 shadow-lg"
     >
       <header>
         <h2 class="w-max -translate-y-2 rounded-full bg-white px-4">
           🎟️ ${id}
         </h2>
       </header>
-      <a target="_blank" href="${url}" link>${url}</a>
+      <a class="break-all" target="_blank" href="${url}" link
+        >.../${wrapString(parseUrl(url), 40)}</a
+      >
     </data>
   `;
 
@@ -62,9 +65,9 @@ export const focusTicketCard = (id: string) => {
   const focusClasses = [
     "mx-10",
     "p-6",
-    "-translate-y-2",
     "font-semibold",
     "text-2xl",
+    "max-w-[30vw]",
   ];
 
   const cards = document.getElementsByClassName("ticket-card");

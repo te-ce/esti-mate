@@ -36,6 +36,9 @@ export const socketEvents = (io: any, socket: Socket) => {
   socket.on(Submit.NEXT, ({ roomId }) => {
     const room = rooms[roomId];
     if (room) {
+      room.users.forEach((user) => {
+        user.estimation = "???";
+      });
       if (room.tickets.length > room.activeTicketNo + 1) {
         room.activeTicketNo++;
         io.to(roomId).emit(Room.UPDATE, rooms);

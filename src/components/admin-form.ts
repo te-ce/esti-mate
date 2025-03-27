@@ -10,21 +10,21 @@ class AdminForm extends HTMLElement {
           type="text"
           id="tickets-input"
           class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
-          placeholder="Tickets"
+          placeholder="url1, url2, ..."
         />
         <button
           type="button"
           id="add-tickets-button"
           class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
         >
-          Add Tickets
+          +
         </button>
         <button
           type="button"
           id="next-button"
           class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
         >
-          Next
+          ->
         </button>
       </form>
     `;
@@ -37,6 +37,15 @@ class AdminForm extends HTMLElement {
 
       emitAddTicket(input.value);
       input.value = "";
+    });
+
+    this.querySelector("#tickets-input")?.addEventListener("keypress", (e) => {
+      const event = e as KeyboardEvent;
+      if (event.key === "Enter") {
+        e.preventDefault();
+        emitAddTicket((e.target as HTMLInputElement).value);
+        (e.target as HTMLInputElement).value = "";
+      }
     });
 
     this.querySelector("#next-button")?.addEventListener("click", () => {

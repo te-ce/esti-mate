@@ -38,7 +38,7 @@ const createUserCard = (id: string, name: string, estimation?: string) => {
     <data
       class="flex min-w-24 flex-col items-center rounded-lg bg-white p-3 pt-0 shadow-lg"
     >
-      <span class="-translate-y-2 rounded-full bg-slate-50 px-2 italic"
+      <span class="-translate-y-2 rounded-full bg-white px-2 italic"
         >${name}</span
       >
       <span>${estimation ?? ""}</span>
