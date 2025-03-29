@@ -64,3 +64,17 @@ export const getUserInfo = (rooms: Rooms, userId: string) => {
   }
   return { roomId: "", user: { id: "", name: "" } };
 };
+
+export const resetUserEstimation = (room: Room) => {
+  room.users.forEach((user) => {
+    user.estimation = "???";
+  });
+};
+
+export const setNextActiveTicket = (room: Room) => {
+  if (room.tickets.length > room.activeTicketNo + 1) {
+    room.activeTicketNo++;
+  } else {
+    room.activeTicketNo = 0;
+  }
+};

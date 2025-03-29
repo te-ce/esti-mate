@@ -71,8 +71,8 @@ export const focusTicketCard = (id: string) => {
   ];
 
   const cards = document.getElementsByClassName("ticket-card");
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].classList.remove(...focusClasses);
+  for (const element of cards) {
+    element.classList.remove(...focusClasses);
   }
 
   const focussedCard = document

@@ -4,10 +4,26 @@ Esti-mate - Your last mate to estimate your tickets (or something like that)
 
 # About
 
+## How to start
+
+You need [pnpm](https://pnpm.io/) installed.
+Then simply just `pnpm install` and `pnpm dev`
+
 ## Motivation
 
 Goal of this project is to build a tool that can help to estimate the tickets. At best this is implemented without the need of an actual Server (WebRTC?). Motivation is to learn and understand the basics of web (html semantics, forms, 'real time' connections, templates, web components, ...).
 Yes, this would have been much easier and faster with something like [React](https://react.dev/) or even [Next](https://nextjs.org/), but that is not the goal here.
+
+## Features
+
+- Create, invite and join custom rooms ✅
+- Add multiple tickets with url links at once as a comma separated string ✅
+- Keep track of current state of room and user estimations ✅
+- Add estimations to current ticket ✅
+- Skip through tickets, show current ticket with relevant url to all room users ✅
+- Visualize sum of estimations and sum of all tickets with their estimations 🚧
+- Remove the need of self hosted server (implement WebRTC with the use of a free public STUN/TURN Server) 🚧
+- Implement random avatars with [dicebear](https://www.dicebear.com/) 🚧
 
 ## Roadmap
 

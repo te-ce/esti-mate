@@ -4,10 +4,12 @@ import {
   addUser,
   getUserInfo,
   removeUser,
+  resetUserEstimation,
   Rooms,
+  setNextActiveTicket,
 } from "./src/utils/room";
 import { Room, Submit, User } from "./src/utils/types";
-import { parseTicketString } from "./src/utils/tickets";
+import { parseTickets } from "./src/utils/tickets";
 
 const rooms: Rooms = {};
 
@@ -36,20 +38,16 @@ export const socketEvents = (io: any, socket: Socket) => {
   socket.on(Submit.NEXT, ({ roomId }) => {
     const room = rooms[roomId];
     if (room) {
-      room.users.forEach((user) => {
-        user.estimation = "???";
-      });
-      if (room.tickets.length > room.activeTicketNo + 1) {
-        room.activeTicketNo++;
-        io.to(roomId).emit(Room.UPDATE, rooms);
-      }
+      resetUserEstimation(room);
+      setNextActiveTicket(room);
+      io.to(roomId).emit(Room.UPDATE, rooms);
     }
   });
 
   socket.on(Submit.ADD_TICKET, ({ tickets, roomId }) => {
     const room = rooms[roomId];
-    const parsedTickets = parseTicketString(tickets);
     if (room) {
+      const parsedTickets = parseTickets(tickets);
       room.tickets = [...room.tickets, ...parsedTickets];
       io.to(roomId).emit(Room.UPDATE, rooms);
     }

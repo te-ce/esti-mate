@@ -30,13 +30,13 @@ socket.on(User.DISCONNECTED, (id) => {
   removeUserCard(id);
 });
 
-export const emitEstimation = (estimation: string) => {
-  socket.emit(Submit.ESTIMATION, { estimation: estimation, ...baseArgs });
-};
-
 socket.on(Submit.ESTIMATION, ({ estimation, id, name }) => {
   addUserCard(id, name, estimation.toString());
 });
+
+export const emitEstimation = (estimation: string) => {
+  socket.emit(Submit.ESTIMATION, { estimation: estimation, ...baseArgs });
+};
 
 export const emitNext = () => {
   socket.emit(Submit.NEXT, baseArgs);
