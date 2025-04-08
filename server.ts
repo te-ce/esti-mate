@@ -17,8 +17,8 @@ const rooms: Rooms = {};
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const socketEvents = (io: any, socket: Socket) => {
   const id = socket.id;
-  socket.on(User.CONNECTED, ({ roomId, name }) => {
-    addUser(rooms, roomId, { id: id, name: name });
+  socket.on(User.CONNECTED, ({ roomId, name, pokerInputs }) => {
+    addUser(rooms, roomId, { id: id, name: name }, pokerInputs);
     socket.join(roomId);
     socket.emit(Room.UPDATE, rooms);
     io.to(roomId).emit(User.CONNECTED, { id, name });

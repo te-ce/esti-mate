@@ -5,6 +5,7 @@ export type Room = {
   users: User[];
   tickets: Ticket[];
   activeTicketNo: number;
+  pokerInputs: string[];
 };
 
 export type Rooms = Record<string, Room>;
@@ -15,18 +16,29 @@ export type User = {
   estimation?: string;
 };
 
-const createRoom = (rooms: Rooms, id: string) => {
+const createRoom = (rooms: Rooms, id: string, pokerInputs: string[]) => {
   rooms[id] = {
     id: id,
     users: [],
     tickets: [],
     activeTicketNo: 0,
+    pokerInputs: pokerInputs,
   };
 };
 
-export const addUser = (rooms: Rooms, roomId: string, user: User) => {
+export const addUser = (
+  rooms: Rooms,
+  roomId: string,
+  user: User,
+  pokerInputs: string,
+) => {
   if (!rooms[roomId]) {
-    createRoom(rooms, roomId);
+    const inputs = pokerInputs
+      .split(",")
+      .map((input) => input.trim())
+      .filter((input) => input !== "");
+
+    createRoom(rooms, roomId, inputs);
   }
   rooms[roomId].users.push(user);
 };

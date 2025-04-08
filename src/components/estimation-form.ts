@@ -2,31 +2,6 @@ import { emitEstimation } from "../client";
 import { html } from "../utils/misc";
 
 class EstimationForm extends HTMLElement {
-  estimations = ["XS", "S", "M", "L", "XL", "?"];
-  generateEstimationButton = (count: number) => {
-    const form = this.querySelector("#estimation-form");
-    const template = this.querySelector(
-      "#estimate-button-template",
-    ) as HTMLTemplateElement;
-
-    if (!form || !template) return;
-
-    for (let i = 0; i < count; i++) {
-      const clone = template.content.cloneNode(true);
-      const button = (clone as DocumentFragment).getElementById(
-        "estimate-button",
-      );
-      if (!button) return;
-
-      button.textContent = `${this.estimations[i]}`;
-      button.addEventListener("click", () => {
-        emitEstimation(this.estimations[i]);
-      });
-
-      form.appendChild(clone);
-    }
-  };
-
   constructor() {
     super();
     this.innerHTML = html`
@@ -40,8 +15,37 @@ class EstimationForm extends HTMLElement {
         ></button>
       </template>
     `;
-    this.generateEstimationButton(this.estimations.length);
   }
 }
 
 customElements.define("estimation-form", EstimationForm);
+
+export const generateEstimationButton = (estimations: string[]) => {
+  const form = document.querySelector("#estimation-form");
+  const template = document.querySelector(
+    "#estimate-button-template",
+  ) as HTMLTemplateElement;
+
+  if (!form || !template) return;
+
+  for (const estimation of estimations) {
+    const id = `estimation${estimation}`;
+
+    const existingButton = document.getElementById(id);
+    if (existingButton) return;
+
+    const clone = template.content.cloneNode(true);
+    const button = (clone as DocumentFragment).getElementById(
+      "estimate-button",
+    );
+    if (!button) return;
+
+    button.textContent = `${estimation}`;
+    button.addEventListener("click", () => {
+      emitEstimation(estimation);
+    });
+    button.id = id;
+
+    form.appendChild(clone);
+  }
+};

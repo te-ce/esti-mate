@@ -9,39 +9,13 @@
     <title>Esti-Mate</title>
   </head>
   <script type="module" src="/src/components/header.ts"></script>
+  <script type="module" src="/src/components/user-form.ts"></script>
   <script type="module" src="/src/invite.ts"></script>
 
   <body class="flex h-screen flex-col items-center bg-slate-300">
     <app-header></app-header>
     <main class="flex h-full flex-col items-center justify-center">
-      <form
-        action="/estimate.html"
-        class="flex flex-col gap-4"
-        id="estimation-form"
-      >
-        <input
-          type="text"
-          id="name"
-          name="name"
-          class="rounded-lg bg-slate-200 px-4 py-2 shadow-lg"
-          placeholder="Name"
-          required
-        />
-        <input
-          type="text"
-          id="room"
-          name="room"
-          class="rounded-lg bg-slate-200 px-4 py-2 shadow-lg"
-          placeholder="Room"
-        />
-        <button
-          type="submit"
-          id="estimate-button"
-          class="rounded-lg bg-white px-4 py-2 shadow-lg transition hover:bg-slate-200"
-        >
-          Enter
-        </button>
-      </form>
+      <user-form></user-form>
     </main>
   </body>
 </html>

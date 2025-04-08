@@ -1,3 +1,4 @@
+import { generateEstimationButton } from "../components/estimation-form";
 import {
   addTicketCard,
   focusTicketCard,
@@ -9,6 +10,8 @@ export const generateRoom = (room: Room) => {
   for (const user of room.users) {
     addUserCard(user.id, user.name, user.estimation ?? "???");
   }
+
+  generateEstimationButton(room.pokerInputs);
 
   let index = 0;
   for (const ticket of room.tickets) {

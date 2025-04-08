@@ -17,6 +17,7 @@ Yes, this would have been much easier and faster with something like [React](htt
 ## Features
 
 - Create, invite and join custom rooms ✅
+- Choose between preset and custom poker estimation types ✅
 - Add multiple tickets with url links at once as a comma separated string ✅
 - Keep track of current state of room and user estimations ✅
 - Add estimations to current ticket ✅

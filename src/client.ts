@@ -10,9 +10,13 @@ const urlParams = new URLSearchParams(window.location.search);
 const name = urlParams.get("name");
 const roomId = urlParams.get("room") ?? "";
 const baseArgs = { roomId: roomId, name: name };
+const pokerArgs = urlParams.get("poker") ?? "";
+
+const pokerInputs =
+  pokerArgs === "custom" ? urlParams.get("custom") : pokerArgs;
 
 socket.on("connect", () => {
-  socket.emit(User.CONNECTED, { ...baseArgs });
+  socket.emit(User.CONNECTED, { ...baseArgs, pokerArgs, pokerInputs });
 });
 
 socket.on(User.CONNECTED, ({ id, name }) => {
